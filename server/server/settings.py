@@ -48,6 +48,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "healthcheck",
+    # "user_profile",
+    "user",
+    "event",
+    "tag",
+    "advertising",
 ]
 
 MIDDLEWARE = [
@@ -69,6 +74,13 @@ if FRONTEND_URL:
     CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
 ROOT_URLCONF = "server.urls"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
 
 TEMPLATES = [
     {
