@@ -48,7 +48,11 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "healthcheck",
-    "user_profile",
+    # "user_profile",
+    "user",
+    "event",
+    "tag",
+    "advertising",
 ]
 
 MIDDLEWARE = [
@@ -75,8 +79,9 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-        ),
+    ),
 }
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

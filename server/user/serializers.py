@@ -1,35 +1,17 @@
 from rest_framework import serializers
-<<<<<<< HEAD
-
 from .models import Profile, User
 
-
-=======
-from .models import Profile, User
-
->>>>>>> Will_branch
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = "__all__"
 
 class UserSerializer(serializers.ModelSerializer):
-<<<<<<< HEAD
-    profile = ProfileSerializer(read_only = True)
-=======
     profile = ProfileSerializer(read_only=True)
->>>>>>> Will_branch
 
     class Meta:
         model = User
         fields = (
-<<<<<<< HEAD
-            "id",
-            "username",
-            "email",
-            "profile"
-        )
-=======
             "id", 
             "username", 
             "email", 
@@ -38,4 +20,3 @@ class UserSerializer(serializers.ModelSerializer):
             "is_staff",
             "is_superuser",
             "profile",)
->>>>>>> Will_branch

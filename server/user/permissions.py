@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-from django.contrib.auth import get_user_model
-from rest_framework import permissions
-
-User = get_user_model()
-
-class isUserOrReadOnly(permissions.BasePermission):
-    def has_object_permission(self, request, view, obj):
-        if isinstance(obj, User):
-            return obj == request.user
-        return obj.user == request.user
-=======
 from rest_framework import permissions
 from django.contrib.auth import get_user_model
 
@@ -22,4 +10,3 @@ class IsUserOrReadOnly(permissions.BasePermission):
             return obj == request.user
         # Otherwise, check user field against logged in user
         return obj.user == request.user
->>>>>>> Will_branch
