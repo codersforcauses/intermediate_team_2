@@ -20,10 +20,14 @@ from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
+    # admin
     path("admin/", admin.site.urls),
-    path("api-auth/", include("rest_framework.urls")),
+
+    # using JWT for auth for front end
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh_view"),
+
+    # URLS for meaningful stuff
     path("api/healthcheck/", include("healthcheck.urls")),
     # path("api/user/", include("user_profile.urls")),
     path("api/user/", include("user.urls")),
