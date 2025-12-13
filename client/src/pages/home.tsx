@@ -1,6 +1,10 @@
+import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuList,
   NavigationMenuTrigger,
@@ -15,6 +19,11 @@ export default function Home() {
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Events</NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <NavigationMenuLink>
+                <Link href={"/"}>INDEX</Link>
+              </NavigationMenuLink>
+            </NavigationMenuContent>
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Clubs</NavigationMenuTrigger>
