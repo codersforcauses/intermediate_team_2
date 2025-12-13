@@ -29,7 +29,7 @@ export default function Home() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-      <div className="flex flex-row justify-end gap-6 p-6">
+      <div className="flex flex-row justify-end gap-6">
         <Button>Join or something</Button>
       </div>
     </div>
