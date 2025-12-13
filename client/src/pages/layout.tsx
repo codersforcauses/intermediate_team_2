@@ -1,4 +1,4 @@
-import { Bell,Home, Mail, User } from "lucide-react";
+import { Bell, Home, Mail, User } from "lucide-react";
 import Link from "next/link";
 
 type LayoutProps = {
@@ -12,7 +12,7 @@ export default function Layout({ children }: LayoutProps) {
 
       <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
         <div className="flex items-center gap-8 rounded-full bg-[#000912] px-8 py-4 shadow-lg">
-          <Link href="/" className="text-gray-300 hover:text-white">
+          <Link href="/home" className="text-gray-300 hover:text-white">
             <Home className="h-6 w-6" />
           </Link>
 
