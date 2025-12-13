@@ -6,6 +6,8 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 
+// Landing page has nav menu on top with a signup on the right
+// scrolling content underneath?
 export default function Home() {
   return (
     <div className="flex flex-row justify-center gap-6 p-6">
