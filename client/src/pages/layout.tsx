@@ -1,14 +1,5 @@
-import { NavigationMenuLink } from "@radix-ui/react-navigation-menu";
+import { Bell,Home, Mail, User } from "lucide-react";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -17,32 +8,30 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   return (
     <>
-      <div className="flex flex-row items-center justify-between gap-6 bg-blue-500 p-6">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Events</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <NavigationMenuLink asChild>
-                  <Link href="/">Index</Link>
-                </NavigationMenuLink>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+      <main className="pb-24">{children}</main>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Clubs</NavigationMenuTrigger>
-            </NavigationMenuItem>
+      <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
+        <div className="flex items-center gap-8 rounded-full bg-[#000912] px-8 py-4 shadow-lg">
+          <Link href="/" className="text-gray-300 hover:text-white">
+            <Home className="h-6 w-6" />
+          </Link>
 
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>About us</NavigationMenuTrigger>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+          <Link href="/messages" className="text-gray-300 hover:text-white">
+            <Mail className="h-6 w-6" />
+          </Link>
 
-        <Button>Join or something</Button>
-      </div>
+          <Link href="/profile" className="text-gray-300 hover:text-white">
+            <User className="h-6 w-6" />
+          </Link>
 
-      <main>{children}</main>
+          <Link
+            href="/notifications"
+            className="text-gray-300 hover:text-white"
+          >
+            <Bell className="h-6 w-6" />
+          </Link>
+        </div>
+      </nav>
     </>
   );
 }

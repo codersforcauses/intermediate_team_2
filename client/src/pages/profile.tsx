@@ -4,8 +4,8 @@ export default function Home() {
   return (
     <Layout>
       <div className="p-6">
-        <h1 className="text-2xl font-bold">Home</h1>
-        <p>This is the home page.</p>
+        <h1 className="text-2xl font-bold">Profile</h1>
+        <p>Profile</p>
       </div>
     </Layout>
   );
