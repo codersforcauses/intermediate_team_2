@@ -10,4 +10,4 @@ from .serializers import EventSerializer
 class EventList(generics.ListCreateAPIView):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.IsAuthenticated] 
+    # permission_classes = [permissions.IsAuthenticated] 
