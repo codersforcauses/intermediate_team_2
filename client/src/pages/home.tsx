@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { useEvents } from "@/hooks/events";
 
 import { Button } from "../components/ui/button";
@@ -32,7 +34,9 @@ export default function Home() {
                 </CardContent>
 
                 <CardFooter className="flex-end flex-row justify-end gap-2">
-                  <Button>Signup</Button>
+                  <Button>
+                    <Link href={`/events/${event.id}`}>View Details</Link>
+                  </Button>
                   <Button>Signup</Button>
                 </CardFooter>
               </Card>
