@@ -17,6 +17,6 @@ export const useEvents = (
   return useQuery<Event[]>({
     ...args,
     queryKey: ["events"],
-    queryFn: () => api.get("/event/").then((res) => res.data),
+    queryFn: () => api.get("/events/").then((res) => res.data),
   });
 };
