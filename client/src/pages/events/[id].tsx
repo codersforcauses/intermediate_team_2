@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 
+import TagList from "@/components/ui/tag-list";
 import { useEvent } from "@/hooks/event";
 
 import DockLayout from "../layouts/docklayout";
@@ -21,20 +22,7 @@ export default function EventDetailsPage() {
   return (
     <>
       <DockLayout>
-        <div>
-          <h1>{event.event_name}</h1>
-          <div className="flex flex-wrap gap-2">
-            {event.tags.map((tag) => (
-              <span
-                key={tag.id}
-                className="rounded-full bg-muted px-3 py-1 text-sm"
-              >
-                {tag.name}
-              </span>
-            ))}
-          </div>
-          <p>{event.event_description}</p>
-        </div>
+        <TagList tags={event.tags}></TagList>
       </DockLayout>
     </>
   );

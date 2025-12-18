@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import TagList from "@/components/ui/tag-list";
 import { useEvents } from "@/hooks/events";
 
 import { Button } from "../components/ui/button";
@@ -30,7 +31,10 @@ export default function Home() {
                 </CardHeader>
 
                 <CardContent>
-                  <p>{event.event_description}</p>
+                  <TagList tags={event.tags}></TagList>
+                  <p className="line-clamp-3 text-muted-foreground">
+                    {event.event_description}
+                  </p>
                 </CardContent>
 
                 <CardFooter className="flex-end flex-row justify-end gap-2">
