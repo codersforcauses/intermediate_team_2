@@ -25,7 +25,7 @@ export default function Home() {
           {!isLoading &&
             events?.map((event) => (
               <Card key={event.id}>
-                <CardHeader>
+                <CardHeader className="p-3">
                   <CardTitle>{event.event_name}</CardTitle>
                   <CardDescription>{event.event_location}</CardDescription>
                 </CardHeader>

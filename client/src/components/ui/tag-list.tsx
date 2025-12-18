@@ -10,7 +10,7 @@ export default function TagList({ tags }: TagListProps) {
     return null;
   }
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 py-2">
       {tags.map((tag) => (
         <span key={tag.id} className="rounded-full bg-muted px-3 py-1 text-sm">
           {tag.name}
