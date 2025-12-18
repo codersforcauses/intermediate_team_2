@@ -32,7 +32,7 @@ urlpatterns = [
     path("api/healthcheck/", include("healthcheck.urls")),
     # path("api/user/", include("user_profile.urls")),
     path("api/user/", include("user.urls")),
-    path("api/event/", include("event.urls")),
+    path("api/events/", include("event.urls")),
     path("api/tag/", include("tag.urls")),
     path("api/advertising/", include("advertising.urls")),
 ]
