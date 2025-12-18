@@ -5,8 +5,8 @@ import { Button } from "./button";
 export default function SearchDock() {
   return (
     <div className="grid grid-cols-10">
-      <div className="col-span-6 grid items-center gap-2 rounded-full bg-purple-100 bg-white px-4 py-3 shadow-lg">
-        <div className="rounded-full px-4 py-2">
+      <div className="col-span-6 grid items-center rounded-full bg-white px-4 py-2 shadow-lg">
+        <div className="rounded-full px-3 py-1.5">
           <input
             placeholder="Search events"
             className="w-full bg-transparent text-base outline-none"
@@ -15,10 +15,10 @@ export default function SearchDock() {
       </div>
       <div className="col-span-4 flex h-full w-full items-center gap-2 px-2">
         <Button className="h-full w-full rounded-full p-2 hover:bg-gray-100">
-          <Search></Search>
+          <Search />
         </Button>
         <Button className="h-full w-full rounded-full p-2 hover:bg-gray-100">
-          <Filter></Filter>
+          <Filter />
         </Button>
       </div>
     </div>
