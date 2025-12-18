@@ -1,8 +1,12 @@
+import { Filter, Search } from "lucide-react";
+
+import { Button } from "./button";
+
 export default function SearchDock() {
   return (
-    <div className="grid grid-cols-10 bg-green-100">
-      <div className="col-span-8 grid items-center gap-2 rounded-full bg-purple-100 bg-white px-4 py-3 shadow-lg">
-        <div className="rounded-full bg-red-100 px-4 py-2">
+    <div className="grid grid-cols-10">
+      <div className="col-span-6 grid items-center gap-2 rounded-full bg-purple-100 bg-white px-4 py-3 shadow-lg">
+        <div className="rounded-full px-4 py-2">
           <input
             type="text"
             placeholder="Search events"
@@ -10,15 +14,13 @@ export default function SearchDock() {
           />
         </div>
       </div>
-      <div className="col-span-1 flex justify-end gap-2">
-        <button className="w-full rounded-full bg-blue-100 p-2 hover:bg-gray-100">
-          🔍
-        </button>
-      </div>
-      <div className="col-span-1 flex justify-end gap-2">
-        <button className="w-full rounded-full bg-blue-100 p-2 hover:bg-gray-100">
-          🔍
-        </button>
+      <div className="col-span-4 flex h-full w-full items-center gap-2 px-2">
+        <Button className="h-full w-full rounded-full p-2 hover:bg-gray-100">
+          <Search></Search>
+        </Button>
+        <Button className="h-full w-full rounded-full p-2 hover:bg-gray-100">
+          <Filter></Filter>
+        </Button>
       </div>
     </div>
   );
