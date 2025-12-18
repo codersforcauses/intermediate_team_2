@@ -8,9 +8,8 @@ export default function SearchDock() {
       <div className="col-span-6 grid items-center gap-2 rounded-full bg-purple-100 bg-white px-4 py-3 shadow-lg">
         <div className="rounded-full px-4 py-2">
           <input
-            type="text"
             placeholder="Search events"
-            className="w-full bg-transparent text-sm outline-none"
+            className="w-full bg-transparent text-base outline-none"
           />
         </div>
       </div>
