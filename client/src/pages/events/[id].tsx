@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 
+import { Button } from "@/components/ui/button";
 import TagList from "@/components/ui/tag-list";
 import { useEvent } from "@/hooks/event";
 
-import DockLayout from "../layouts/docklayout";
+import ActionLayout from "../layouts/actionlayout";
 
 export default function EventDetailsPage() {
   // useRouter allows access to URL parameters
@@ -20,7 +21,18 @@ export default function EventDetailsPage() {
   }
 
   return (
-    <DockLayout>
+    <ActionLayout
+      secondaryAction={
+        <Button
+          variant="outline"
+          className="flex-1"
+          onClick={() => router.back()}
+        >
+          Back
+        </Button>
+      }
+      primaryAction={<Button className="flex-1">Join Event</Button>}
+    >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
         <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
           <div className="absolute -bottom-6 left-6">
@@ -42,6 +54,6 @@ export default function EventDetailsPage() {
           </div>
         </div>
       </div>
-    </DockLayout>
+    </ActionLayout>
   );
 }
