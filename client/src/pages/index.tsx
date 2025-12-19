@@ -20,7 +20,7 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <Home className="h-4 w-4" />
-            Welcome
+            <span className="hidden sm:inline">Welcome</span>
           </button>
 
           <button
@@ -28,7 +28,7 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <Info className="h-4 w-4" />
-            About
+            <span className="hidden sm:inline">About</span>
           </button>
 
           <button
@@ -36,7 +36,7 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <Workflow className="h-4 w-4" />
-            How It Works
+            <span className="hidden sm:inline">How</span>
           </button>
 
           <button
@@ -44,7 +44,8 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <Star className="h-4 w-4" />
-            Why Us
+
+            <span className="hidden sm:inline">Why</span>
           </button>
 
           <button
@@ -52,7 +53,7 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <LogIn className="h-4 w-4" />
-            Get Started
+            <span className="hidden sm:inline">Start</span>
           </button>
 
           <button
@@ -60,7 +61,7 @@ export default function AboutPage() {
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
             <Mail className="h-4 w-4" />
-            Contact
+            <span className="hidden sm:inline">Contact</span>
           </button>
         </div>
       </nav>
