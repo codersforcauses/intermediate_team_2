@@ -1,58 +1,67 @@
-import { Home, Info, LogIn, Mail,Star, Workflow } from "lucide-react";
+import { Home, Info, LogIn, Mail, Star, Workflow } from "lucide-react";
 import React from "react";
+
+// literally just for UX, clicking on any navbar buttons will scroll to that section instead of jumping instantly to that section
+const scrollTo = (id: string) => {
+  // question mark makes function scrolls only if the id is valid (wihout it an invalid id will error react)
+  document.getElementById(id)?.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+};
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="min-h-screen scroll-smooth bg-slate-100">
       <nav className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2">
         <div className="flex items-center gap-6 rounded-full bg-[#000912] px-8 py-4 text-sm shadow-lg">
-          <a
-            href="#welcome"
+          <button
+            onClick={() => scrollTo("welcome")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <Home className="h-5 w-5" />
+            <Home className="h-4 w-4" />
             Welcome
-          </a>
+          </button>
 
-          <a
-            href="#about"
+          <button
+            onClick={() => scrollTo("about")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <Info className="h-5 w-5" />
+            <Info className="h-4 w-4" />
             About
-          </a>
+          </button>
 
-          <a
-            href="#how"
+          <button
+            onClick={() => scrollTo("how")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <Workflow className="h-5 w-5" />
+            <Workflow className="h-4 w-4" />
             How It Works
-          </a>
+          </button>
 
-          <a
-            href="#why"
+          <button
+            onClick={() => scrollTo("why")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <Star className="h-5 w-5" />
+            <Star className="h-4 w-4" />
             Why Us
-          </a>
+          </button>
 
-          <a
-            href="#login"
+          <button
+            onClick={() => scrollTo("login")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <LogIn className="h-5 w-5" />
+            <LogIn className="h-4 w-4" />
             Get Started
-          </a>
+          </button>
 
-          <a
-            href="#contact"
+          <button
+            onClick={() => scrollTo("contact")}
             className="flex items-center gap-2 text-gray-300 hover:text-white"
           >
-            <Mail className="h-5 w-5" />
+            <Mail className="h-4 w-4" />
             Contact
-          </a>
+          </button>
         </div>
       </nav>
 
