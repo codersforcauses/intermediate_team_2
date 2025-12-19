@@ -20,10 +20,28 @@ export default function EventDetailsPage() {
   }
 
   return (
-    <>
-      <DockLayout>
-        <TagList tags={event.tags}></TagList>
-      </DockLayout>
-    </>
+    <DockLayout>
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
+        <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
+          <div className="absolute -bottom-6 left-6">
+            <div className="h-16 w-16 rounded-full border-4 border-white bg-gray-300" />
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <h1 className="text-2xl font-semibold">{event.event_name}</h1>
+
+          {/* Tags */}
+          <div className="mt-3">
+            <TagList tags={event.tags} />
+          </div>
+
+          {/* Description */}
+          <div className="mt-6 break-words text-muted-foreground">
+            <p>{event.event_description}</p>
+          </div>
+        </div>
+      </div>
+    </DockLayout>
   );
 }
