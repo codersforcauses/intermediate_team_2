@@ -1,5 +1,7 @@
 import { Filter, Search } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 import { Button } from "./button";
 
 export default function SearchDock() {
@@ -9,7 +11,7 @@ export default function SearchDock() {
         <div className="rounded-full px-3 py-1.5">
           <input
             placeholder="Search events"
-            className="w-full bg-transparent text-base outline-none"
+            className={cn("w-full bg-transparent text-base outline-none")}
           />
         </div>
       </div>
