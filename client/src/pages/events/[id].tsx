@@ -34,7 +34,7 @@ export default function EventDetailsPage() {
         </Button>
       }
       primaryAction={
-        <Link href={"/home"} className="flex-1">
+        <Link href={"/events/" + id + "/participants"} className="flex-1">
           <Button className="w-full rounded-full">Join Event</Button>
         </Link>
       }
