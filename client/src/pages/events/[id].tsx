@@ -25,13 +25,15 @@ export default function EventDetailsPage() {
       secondaryAction={
         <Button
           variant="outline"
-          className="flex-1"
+          className="flex-1 rounded-full"
           onClick={() => router.back()}
         >
           Back
         </Button>
       }
-      primaryAction={<Button className="flex-1">Join Event</Button>}
+      primaryAction={
+        <Button className="flex-1 rounded-full">Join Event</Button>
+      }
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
         <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
