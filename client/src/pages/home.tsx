@@ -38,10 +38,14 @@ export default function Home() {
                 </CardContent>
 
                 <CardFooter className="flex-end flex-row justify-center gap-2">
-                  <Button className="w-full rounded-full">
-                    <Link href={`/events/${event.id}`}>View Details</Link>
-                  </Button>
-                  <Button className="rounded-full">Signup</Button>
+                  <Link href={`/events/${event.id}`} className="w-full">
+                    <Button className="w-full rounded-full">
+                      View Details
+                    </Button>
+                  </Link>
+                  <Link href={`/events/${event.id}`}>
+                    <Button className="rounded-full">Signup</Button>
+                  </Link>
                 </CardFooter>
               </Card>
             ))}
