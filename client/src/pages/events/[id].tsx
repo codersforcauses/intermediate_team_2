@@ -36,7 +36,9 @@ export default function EventDetailsPage() {
         <Button className="flex-1 rounded-full">Join Event</Button>
       }
     >
+      {/* main container */}
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
+        {/* image container */}
         <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
           <Image
             className="h-full w-full object-cover"
@@ -45,6 +47,7 @@ export default function EventDetailsPage() {
             fill
           ></Image>
         </div>
+        {/* if more than one image -> return div with all other images */}
         {event.images.length > 1 && (
           <div className="mt-6 grid grid-cols-3 gap-3">
             {event.images.slice(1).map((img) => (
@@ -59,10 +62,6 @@ export default function EventDetailsPage() {
             ))}
           </div>
         )}
-
-        <div className="absolute -bottom-6 left-6">
-          <div className="h-16 w-16 rounded-full border-4 border-white bg-gray-300"></div>
-        </div>
 
         <div className="mt-10">
           <h1 className="text-2xl font-semibold">{event.event_name}</h1>
