@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui/button";
@@ -37,9 +38,30 @@ export default function EventDetailsPage() {
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
         <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
-          <div className="absolute -bottom-6 left-6">
-            <div className="h-16 w-16 rounded-full border-4 border-white bg-gray-300" />
+          <Image
+            className="h-full w-full object-cover"
+            src={event.images[0]?.image}
+            alt={event.event_name}
+            fill
+          ></Image>
+        </div>
+        {event.images.length > 1 && (
+          <div className="mt-6 grid grid-cols-3 gap-3">
+            {event.images.slice(1).map((img) => (
+              <div key={img.id} className="relative h-24 w-full">
+                <Image
+                  src={img.image}
+                  alt={event.event_name}
+                  fill
+                  className="rounded-lg object-cover"
+                />
+              </div>
+            ))}
           </div>
+        )}
+
+        <div className="absolute -bottom-6 left-6">
+          <div className="h-16 w-16 rounded-full border-4 border-white bg-gray-300"></div>
         </div>
 
         <div className="mt-10">

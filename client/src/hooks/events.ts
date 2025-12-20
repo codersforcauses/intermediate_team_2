@@ -6,6 +6,11 @@ export interface Tag {
   id: number;
   name: string;
 }
+
+export interface EventImage {
+  id: number;
+  image: string;
+}
 export interface Event {
   id: number;
   event_name: string;
@@ -13,6 +18,7 @@ export interface Event {
   event_date: string;
   event_location: string;
   tags: Tag[];
+  images: EventImage[];
 }
 
 // hook to fetch events list
