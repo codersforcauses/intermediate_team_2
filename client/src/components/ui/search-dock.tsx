@@ -7,7 +7,7 @@ import { Button } from "./button";
 export default function SearchDock() {
   return (
     <div className="grid grid-cols-10">
-      <div className="col-span-6 grid items-center rounded-full bg-white px-4 py-2 shadow-lg">
+      <div className="col-span-6 grid items-center rounded-full bg-white bg-white/90 px-1 py-0.5 shadow-lg backdrop-blur">
         <div className="rounded-full px-3 py-1.5">
           <input
             placeholder="Search events"
