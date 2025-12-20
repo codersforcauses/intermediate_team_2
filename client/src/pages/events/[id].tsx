@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui/button";
@@ -33,7 +34,9 @@ export default function EventDetailsPage() {
         </Button>
       }
       primaryAction={
-        <Button className="flex-1 rounded-full">Join Event</Button>
+        <Link href={"/home"} className="flex-1">
+          <Button className="w-full rounded-full">Join Event</Button>
+        </Link>
       }
     >
       {/* main container */}
