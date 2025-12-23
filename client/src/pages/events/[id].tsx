@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui/button";
 import TagList from "@/components/ui/tag-list";
-import { useEvent } from "@/hooks/event";
+import { useEvent } from "@/hooks/events";
 
 import ActionLayout from "../layouts/actionlayout";
 
