@@ -40,3 +40,18 @@ export const useEvents = (
     queryFn: () => api.get("/events/").then((res) => res.data),
   });
 };
+
+// hook to fetch single event by id
+export const useEvent = (
+  id: number,
+  args?: Omit<UseQueryOptions<Event>, "queryKey" | "queryFn">,
+) => {
+  return useQuery<Event>({
+    queryKey: ["event", id],
+    queryFn: () => {
+      return api.get(`/events/${id}/`).then((res) => res.data);
+    },
+    enabled: !!id,
+    ...args,
+  });
+};
