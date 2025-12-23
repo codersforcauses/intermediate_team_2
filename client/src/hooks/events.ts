@@ -11,6 +11,14 @@ export interface EventImage {
   id: number;
   image: string;
 }
+
+export interface Participant {
+  id: number;
+  username: string;
+  first_name: string;
+  email: string;
+}
+
 export interface Event {
   id: number;
   event_name: string;
@@ -19,6 +27,7 @@ export interface Event {
   event_location: string;
   tags: Tag[];
   images: EventImage[];
+  participants: Participant[];
 }
 
 // hook to fetch events list
