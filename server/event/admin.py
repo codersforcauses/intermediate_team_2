@@ -9,3 +9,6 @@ class EventImageInline(admin.TabularInline):
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     inlines = [EventImageInline]
+    autocomplete_fields = ["participants"]
+    list_display = ( "event_name", "id", "event_date")
+    search_fields = ("event_name",)
