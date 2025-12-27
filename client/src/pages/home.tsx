@@ -1,17 +1,6 @@
-import Link from "next/link";
-
-import TagList from "@/components/ui/tag-list";
+import EventCard from "@/components/ui/event-card";
 import { useEvents } from "@/hooks/events";
 
-import { Button } from "../components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
 import SearchDock from "../components/ui/search-dock";
 import DockLayout from "./layouts/docklayout";
 
@@ -24,30 +13,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl space-y-3 px-4 py-6">
           {!isLoading &&
             events?.map((event) => (
-              <Card key={event.id}>
-                <CardHeader className="p-3">
-                  <CardTitle>{event.event_name}</CardTitle>
-                  <CardDescription>{event.event_location}</CardDescription>
-                </CardHeader>
-
-                <CardContent>
-                  <TagList tags={event.tags}></TagList>
-                  <p className="line-clamp-3 text-muted-foreground">
-                    {event.event_description}
-                  </p>
-                </CardContent>
-
-                <CardFooter className="flex-end flex-row justify-center gap-2">
-                  <Link href={`/events/${event.id}`} className="w-full">
-                    <Button className="w-full rounded-full">
-                      View Details
-                    </Button>
-                  </Link>
-                  <Link href={`/events/${event.id}`}>
-                    <Button className="rounded-full">Signup</Button>
-                  </Link>
-                </CardFooter>
-              </Card>
+              <EventCard key={event.id} event={event}></EventCard>
             ))}
         </div>
       </DockLayout>
