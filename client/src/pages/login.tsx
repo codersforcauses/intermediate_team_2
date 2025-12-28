@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,15 +13,16 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/api";
-import { setTokens } from "@/lib/auth";
+import { clearTokens, setTokens } from "@/lib/auth";
 
 export default function Login() {
-  // form variables
+  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   //function to return JWT
   const login = async (username: string, password: string) => {
+    clearTokens();
     const res = await api.post("/token/", {
       username,
       password,
@@ -28,6 +30,8 @@ export default function Login() {
 
     const { access, refresh } = res.data;
     setTokens(access, refresh);
+
+    router.push("/home");
   };
 
   return (
