@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -12,58 +11,58 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import api from "@/lib/api";
-import { setTokens } from "@/lib/auth";
 
-export default function Login() {
-  // form variables
+export default function Signup() {
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  //function to return JWT
-  const login = async (username: string, password: string) => {
-    const res = await api.post("/token/", {
+  //called from onclick submit to post variables for registration
+  const register = async (
+    email: string,
+    username: string,
+    password: string,
+  ) => {
+    await api.post("/user/register/", {
+      email,
       username,
       password,
     });
-
-    const { access, refresh } = res.data;
-    setTokens(access, refresh);
   };
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Signup</CardTitle>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
-          <Link href={"/register"}>
-            <Button variant="link">Sign Up</Button>
-          </Link>
         </CardHeader>
         <CardContent>
           <form>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Input
+                  id="email"
+                  type="email"
+                  placeholder="Example@mail.com"
+                  required
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Input
                   id="username"
                   type="username"
-                  placeholder="user-name"
+                  placeholder="Username"
                   required
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
                 <Input
+                  id="password"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -75,9 +74,9 @@ export default function Login() {
           <Button
             type="submit"
             className="w-full"
-            onClick={() => login(username, password)}
+            onClick={() => register(email, username, password)}
           >
-            Login
+            Signup
           </Button>
         </CardFooter>
       </Card>
