@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -8,8 +10,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import api from "@/lib/api";
+import { setTokens } from "@/lib/auth";
 
 export default function Login() {
+  // form variables
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  //function to return JWT
+  const login = async (username: string, password: string) => {
+    const res = await api.post("/token/", {
+      username,
+      password,
+    });
+
+    const { access, refresh } = res.data;
+    setTokens(access, refresh);
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <Card className="w-full max-w-sm">
@@ -25,10 +44,11 @@ export default function Login() {
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
+                  id="username"
+                  type="username"
+                  placeholder="user-name"
                   required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="grid gap-2">
@@ -40,17 +60,21 @@ export default function Login() {
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
             </div>
           </form>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full">
+          <Button
+            type="submit"
+            className="w-full"
+            onClick={() => login(username, password)}
+          >
             Login
-          </Button>
-          <Button variant="outline" className="w-full">
-            Login with Google
           </Button>
         </CardFooter>
       </Card>
