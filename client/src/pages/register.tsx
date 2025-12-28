@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -35,6 +36,9 @@ export default function Signup() {
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Signup</CardTitle>
+          <Link href={"/login"}>
+            <Button variant="link">Back to Login</Button>
+          </Link>
           <CardDescription>
             Enter your email below to login to your account
           </CardDescription>
