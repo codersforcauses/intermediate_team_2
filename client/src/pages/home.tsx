@@ -25,7 +25,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl space-y-3 px-4 py-6">
           {me && (
             <div>
-              <p>Hello {me.first_name}</p>
+              <p>
+                Hello {me.first_name} ({me.username})
+              </p>
               <Button onClick={logout}>Logout</Button>
             </div>
           )}
