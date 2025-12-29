@@ -27,6 +27,14 @@ class UserProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
+class MeView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+    
+    def get(self, request):
+        serializer = self.serializer_class(request.user)
+        return Response(serializer.data)
+
 class RegisterView(APIView):
     authentication_classes = []
     permission_classes = [AllowAny]
