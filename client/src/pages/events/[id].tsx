@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { Button } from "@/components/ui/button";
 import TagList from "@/components/ui/tag-list";
-import { useEvent } from "@/hooks/events";
+import { useEvent, useSignupEvent } from "@/hooks/events";
 
 import ActionLayout from "../layouts/actionlayout";
 
@@ -12,6 +12,7 @@ export default function EventDetailsPage() {
   // useRouter allows access to URL parameters
   const router = useRouter();
   const id = Number(router.query.id);
+  const signup = useSignupEvent(id);
 
   const { data: event, isLoading } = useEvent(id);
   if (isLoading) {
@@ -35,7 +36,12 @@ export default function EventDetailsPage() {
       }
       primaryAction={
         <Link href={"/events/" + id + "/participants"} className="flex-1">
-          <Button className="w-full rounded-full">Join Event</Button>
+          <Button
+            className="w-full rounded-full"
+            onClick={() => signup.mutate()}
+          >
+            Join Event
+          </Button>
         </Link>
       }
     >
