@@ -26,7 +26,7 @@ export default function Home() {
           {me && (
             <div>
               <p>
-                Hello {me.first_name} ({me.username})
+                Hello {me.first_name} ({me.username} {me.profile.role})
               </p>
               <Button onClick={logout}>Logout</Button>
             </div>

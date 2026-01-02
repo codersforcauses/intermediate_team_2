@@ -2,6 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 
 import api from "@/lib/api";
 
+export interface Profile {
+  id: number;
+  user: number;
+  profile_info: string;
+  role: string;
+}
+
 export interface User {
   id: number;
   username: string;
@@ -9,6 +16,7 @@ export interface User {
   last_name: string;
   email: string;
   is_staff: boolean;
+  profile: Profile;
 }
 
 export const useMe = () =>

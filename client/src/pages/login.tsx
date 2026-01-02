@@ -27,11 +27,23 @@ export default function Login() {
       username,
       password,
     });
-
     const { access, refresh } = res.data;
     setTokens(access, refresh);
 
-    router.push("/home");
+    // once logged in, get user role and redirect to appropriate page
+    const userResponse = await api.get("/user/me/");
+    const userRole = userResponse.data.profile.role;
+
+    switch (userRole) {
+      case "manager":
+        router.push("manager/dashboard");
+        break;
+      case "user":
+        router.push("/home");
+        break;
+      default:
+        router.push("/home");
+    }
   };
 
   return (
