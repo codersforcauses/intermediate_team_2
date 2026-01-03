@@ -24,8 +24,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
 
     # using JWT for auth for front end
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh_view"),
+    path("api/user/login/", TokenObtainPairView.as_view(), name="login"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # URLS for meaningful stuff
     path("api/healthcheck/", include("healthcheck.urls")),
