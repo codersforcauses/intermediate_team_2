@@ -9,5 +9,8 @@
   "typescript.tsdk": "${workspaceFolder}/client/node_modules/typescript/lib",
   "shellcheck.ignorePatterns": {
     "**/.env*": true
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   }
 }
