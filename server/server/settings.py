@@ -38,6 +38,8 @@ ALLOWED_HOSTS: list[str] = os.environ.get("API_ALLOWED_HOSTS").split() if os.env
 # Application definition
 
 INSTALLED_APPS = [
+    # "chats.apps.serverConfig"
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,6 +51,8 @@ INSTALLED_APPS = [
     "corsheaders",
     "healthcheck",
     # "user_profile",
+    "channels", 
+    "chat",
     "user",
     "event",
     "tag",
@@ -98,6 +102,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "server.wsgi.application"
+ASGI_APPLICATION = "server.asgi.application"
 
 
 # Database
@@ -173,3 +178,9 @@ STATICFILES_DIRS = ("static",)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",
+#     }
+# }

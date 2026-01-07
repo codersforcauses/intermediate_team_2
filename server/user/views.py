@@ -1,17 +1,23 @@
 from django.shortcuts import render
 from rest_framework import generics, permissions, status
-from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .permissions import IsUserOrReadOnly
 from rest_framework.permissions import AllowAny
 
 from .models import Profile, User
-from .serializers import ProfileSerializer, UserSerializer, RegisterSerializer
 
-from rest_framework.permissions import AllowAny # 暂时加上
+from .serializers import ProfileSerializer, UserSerializer, SignupSerializer
 
-# Create your views here.
+class SignupView(generics.CreateAPIView):
+    serializer_class = SignupSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "User created successfully"}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserList(APIView):
     permission_classes = (AllowAny,)#permissions.IsAuthenticated
@@ -41,7 +47,7 @@ class MeView(APIView):
 class RegisterView(APIView):
     authentication_classes = []
     permission_classes = [AllowAny]
-    serializer_class = RegisterSerializer
+    serializer_class = UserSerializer
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
