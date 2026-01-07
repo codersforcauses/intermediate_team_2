@@ -13,6 +13,7 @@ type AuthContextType = {
   login: (access: string, refresh: string) => void;
   logout: () => void;
   isLoggedIn: boolean;
+  isLoading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -20,6 +21,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
@@ -27,6 +29,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const storedRefresh = localStorage.getItem("refreshToken");
     if (storedAccess) setAccessToken(storedAccess);
     if (storedRefresh) setRefreshToken(storedRefresh);
+    setIsLoading(false);
   }, []);
 
   const login = (access: string, refresh: string) => {
@@ -48,7 +51,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ accessToken, refreshToken, login, logout, isLoggedIn }}
+      value={{
+        accessToken,
+        refreshToken,
+        login,
+        logout,
+        isLoggedIn,
+        isLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

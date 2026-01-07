@@ -5,15 +5,16 @@ import Layout from "@/components/Layout";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Chat() {
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!isLoading && !isLoggedIn) {
       router.push("/login");
     }
-  }, [isLoggedIn, router]);
+  }, [isLoggedIn, isLoading, router]);
 
-  if (!isLoggedIn) return <p>Redirecting to login...</p>;
+  if (isLoading) return <p>Loading...</p>;
+  if (!isLoggedIn) return null;
   return <Layout>This is the chat page</Layout>;
 }
