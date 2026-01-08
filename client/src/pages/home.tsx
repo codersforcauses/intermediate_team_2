@@ -1,21 +1,37 @@
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import EventCard from "@/components/ui/event-card";
+import { useAuth } from "@/context/AuthContext";
 import { useEvents } from "@/hooks/events";
 import { useMe } from "@/hooks/me";
-import { clearTokens } from "@/lib/auth";
 
 import SearchDock from "../components/ui/search-dock";
 import DockLayout from "./layouts/docklayout";
 
 export default function Home() {
-  const { data: events, isLoading } = useEvents();
-  const { data: me } = useMe();
+  const { data: events, isLoading: eventsLoading } = useEvents();
+  const { logout } = useAuth();
   const router = useRouter();
+  const { data: me, isLoading: meLoading } = useMe();
 
-  const logout = () => {
-    clearTokens();
+  if (me?.profile.role === "manager") {
+    router.replace("/manager/dashboard");
+    return null;
+  }
+
+  if (meLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        Loading…
+      </div>
+    );
+  }
+
+  const handleLogout = () => {
+    logout();
+    toast("Logged out successfully");
     router.push("/login");
   };
 
@@ -28,10 +44,10 @@ export default function Home() {
               <p>
                 Hello {me.first_name} ({me.username} {me.profile.role})
               </p>
-              <Button onClick={logout}>Logout</Button>
+              <Button onClick={handleLogout}>Logout</Button>
             </div>
           )}
-          {!isLoading &&
+          {!eventsLoading &&
             events?.map((event) => (
               <EventCard key={event.id} event={event}></EventCard>
             ))}

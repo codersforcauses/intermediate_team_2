@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,14 +18,14 @@ import api from "@/lib/api";
 
 export default function Login() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
   //function to return JWT
   const handleLogin = async () => {
     try {
+      logout();
       const res = await api.post("/user/login/", {
         username,
         password,
@@ -32,13 +33,11 @@ export default function Login() {
       const { access, refresh } = res.data;
       login(access, refresh);
 
-      // redirect based on role
-      const me = await api.get("/user/me/");
-      const role = me.data.profile.role;
-      router.push(role === "manager" ? "/manager/dashboard" : "/home");
+      toast("Logged in successfully");
+      router.push("/home");
     } catch (err) {
       console.log(err);
-      setMessage("Login failed. Please check your credentials.");
+      toast("Login failed. Please check your credentials.");
     }
   };
 
@@ -55,41 +54,34 @@ export default function Login() {
           </Link>
         </CardHeader>
         <CardContent>
-          {message && (
-            <p className="mb-4 text-center text-sm text-muted-foreground">
-              {message}
-            </p>
-          )}
-          <form>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Input
-                  id="username"
-                  type="username"
-                  placeholder="user-name"
-                  required
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
-                </div>
-                <Input
-                  type="password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
+          <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Input
+                id="username"
+                type="username"
+                placeholder="user-name"
+                required
+                onChange={(e) => setUsername(e.target.value)}
+              />
             </div>
-          </form>
+            <div className="grid gap-2">
+              <div className="flex items-center">
+                <button
+                  type="button"
+                  className="ml-auto text-sm underline-offset-4 hover:underline"
+                >
+                  Forgot your password?
+                </button>
+              </div>
+              <Input
+                type="password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </div>
         </CardContent>
         <CardFooter className="flex-col gap-2">
-          <Button type="submit" className="w-full" onClick={handleLogin}>
+          <Button className="w-full" onClick={handleLogin}>
             Login
           </Button>
         </CardFooter>
