@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -24,11 +25,17 @@ export default function Signup() {
     username: string,
     password: string,
   ) => {
-    await api.post("/user/register/", {
-      email,
-      username,
-      password,
-    });
+    try {
+      await api.post("/user/signup/", {
+        email,
+        username,
+        password,
+      });
+      toast("Registration successful.");
+    } catch (err) {
+      console.log(err);
+      toast("Registration failed. Please try again.");
+    }
   };
 
   return (
