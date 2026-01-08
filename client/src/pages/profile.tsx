@@ -6,16 +6,16 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { useUserProfile } from "@/hooks/userprofile";
+import { useMe } from "@/hooks/me";
 
 import Layout from "./layout";
 
 export default function Home() {
   const router = useRouter();
-  const { data, isLoading } = useUserProfile();
+  const { data: me, isLoading } = useMe();
   useEffect(() => {
-    console.log("user profile:", data);
-  }, [data]);
+    console.log("user profile:", me);
+  }, [me]);
 
   return (
     <Layout>
@@ -28,12 +28,12 @@ export default function Home() {
             </Avatar>
             <div className="UserName">
               <h1 className="mt-2 text-xl font-semibold">
-                {isLoading ? "Loading" : data?.username}
+                {isLoading ? "Loading" : me?.username}
               </h1>
             </div>
             <div className="UserEmail">
               <p className="text-sm text-gray-500">
-                {isLoading ? "Loading" : data?.email}
+                {isLoading ? "Loading" : me?.email}
               </p>
             </div>
             <div className="UserTags">
@@ -53,7 +53,7 @@ export default function Home() {
             <div className="Separator w-full px-40 py-3">
               <Separator />
             </div>
-            <div className="self-intro px-20">{data?.profile.profile_info}</div>
+            <div className="self-intro px-20">{me?.profile.profile_info}</div>
           </div>
           <CardFooter className="flex justify-center">
             <Button className="mt-20" onClick={() => router.push("/edit")}>
