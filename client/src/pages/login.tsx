@@ -1,76 +1,99 @@
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useAuth } from "@/context/AuthContext";
+import api from "@/lib/api";
 
-export default function LoginPage() {
+export default function Login() {
   const router = useRouter();
   const { login } = useAuth();
-  const [form, setForm] = useState({ username: "", password: "" });
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setMessage("");
-
+  //function to return JWT
+  const handleLogin = async () => {
     try {
-      const res = await fetch("http://localhost:8000/api/user/login/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+      const res = await api.post("/user/login/", {
+        username,
+        password,
       });
-      const data = await res.json();
+      const { access, refresh } = res.data;
+      login(access, refresh);
 
-      if (res.ok) {
-        login(data.access, data.refresh);
-        router.push("/");
-      } else {
-        setMessage(data.detail || "Login failed");
-      }
-    } catch (error) {
-      // Temporary fix to commit
-      const x = error;
-      console.log(x);
-      setMessage("Login failed. Please try again");
+      // redirect based on role
+      const me = await api.get("/user/me/");
+      const role = me.data.profile.role;
+      router.push(role === "manager" ? "/manager/dashboard" : "/home");
+    } catch (err) {
+      console.log(err);
+      setMessage("Login failed. Please check your credentials.");
     }
   };
 
   return (
-    <Layout>
-      <div className="mx-auto max-w-md p-4">
-        <h1 className="mb-4 text-2xl font-bold">Login</h1>
-        {message && <p className="mb-2 text-red-500">{message}</p>}
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-          <input
-            name="username"
-            placeholder="Username"
-            value={form.username}
-            onChange={handleChange}
-            className="border p-2"
-            required
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            className="border p-2"
-            required
-          />
-          <button
-            type="submit"
-            className="mt-2 rounded bg-green-500 p-2 text-white"
-          >
+    <div className="flex min-h-screen items-center justify-center bg-muted">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Login to your account</CardTitle>
+          <CardDescription>
+            Enter your email below to login to your account
+          </CardDescription>
+          <Link href={"/register"}>
+            <Button variant="link">Sign Up</Button>
+          </Link>
+        </CardHeader>
+        <CardContent>
+          {message && (
+            <p className="mb-4 text-center text-sm text-muted-foreground">
+              {message}
+            </p>
+          )}
+          <form>
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Input
+                  id="username"
+                  type="username"
+                  placeholder="user-name"
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <a
+                    href="#"
+                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+                <Input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+            </div>
+          </form>
+        </CardContent>
+        <CardFooter className="flex-col gap-2">
+          <Button type="submit" className="w-full" onClick={handleLogin}>
             Login
-          </button>
-        </form>
-      </div>
-    </Layout>
+          </Button>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
