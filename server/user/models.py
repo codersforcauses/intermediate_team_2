@@ -11,9 +11,8 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_info = models.TextField(blank=True) # Or keep it as 'bio'?
     
-    ROLE_CHOICES = ('user','User'), ('admin','Admin')
-    role = models.CharField(max_length=20, default='user', choices=ROLE_CHOICES)  # Or we can use BooleanField is_manager: 
-                                                                                        #is_manager = models.BooleanField(default=False)
+    ROLE_CHOICES = ('user','User'), ('admin','Admin'), ('manager','Manager')
+    role = models.CharField(max_length=20, default='user', choices=ROLE_CHOICES)
     def __str__(self):
         return f"Profile: {self.user.username}"
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from tag.models import Tag
 
 # Create your models here.
 
@@ -14,6 +15,22 @@ class Event(models.Model):
     event_date = models.DateField()
     event_location = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name="events"
+    )
+
 
     def __str__(self):
         return f"Event: {self.event_name} hosted by {self.organizer.username}"
+
+class EventImage(models.Model):
+    event = models.ForeignKey(
+        "Event",
+        related_name="images",
+        on_delete=models.CASCADE
+    )
+
+    image = models.ImageField(upload_to="event_images/")

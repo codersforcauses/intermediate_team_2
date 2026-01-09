@@ -18,21 +18,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     # admin
     path("admin/", admin.site.urls),
 
     # using JWT for auth for front end
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh_view"),
-    path("api-auth/", include("rest_framework.urls")),
+    path("api/user/login/", TokenObtainPairView.as_view(), name="login"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
     # URLS for meaningful stuff
     path("api/healthcheck/", include("healthcheck.urls")),
     # path("api/user/", include("user_profile.urls")),
     path("api/user/", include("user.urls")),
-    path("api/event/", include("event.urls")),
+    path("api/events/", include("event.urls")),
     path("api/tag/", include("tag.urls")),
     path("api/advertising/", include("advertising.urls")),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
