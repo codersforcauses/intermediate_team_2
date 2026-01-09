@@ -35,7 +35,7 @@ export default function EventDetailsPage() {
         </Button>
       }
       primaryAction={
-        <Link href={"/events/" + id + "/participants"} className="flex-1">
+        <Link href={"/events/" + id + "/hub"} className="flex-1">
           <Button
             className="w-full rounded-full"
             onClick={() => signup.mutate()}
@@ -45,9 +45,7 @@ export default function EventDetailsPage() {
         </Link>
       }
     >
-      {/* main container */}
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-0">
-        {/* image container */}
         <div className="relative h-56 w-full overflow-hidden rounded-xl bg-gray-200">
           <Image
             className="h-full w-full object-cover"
