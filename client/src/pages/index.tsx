@@ -7,6 +7,7 @@ import {
   LogIn,
   Mail,
   MessageCircle,
+  Shield,
   Sparkles,
   Star,
   TrendingUp,
@@ -366,6 +367,194 @@ export default function AboutPage() {
             Benefits for everyone in the university community
           </p>
         </div>
+
+        <div className="mb-12 grid gap-8 md:grid-cols-2">
+          {/* Student card */}
+          <Card className={`${COLORS.border.default} shadow-lg`}>
+            <CardHeader className={COLORS.background.cardHeader}>
+              <CardTitle
+                className={`text-3xl ${COLORS.text.primary} flex items-center gap-3`}
+              >
+                <Users className="h-8 w-8" />
+                For Students
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6 pt-6">
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Build Genuine Friendships
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Reduce Social Anxiety at Events
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Discover your community
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Make the Most of Events
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Events card */}
+          <Card className={`${COLORS.border.default} shadow-lg`}>
+            <CardHeader className={COLORS.background.cardHeader}>
+              <CardTitle
+                className={`text-3xl ${COLORS.text.primary} flex items-center gap-3`}
+              >
+                <Users className="h-8 w-8" />
+                For Event Organisers
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6 pt-6">
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Build Genuine Friendships
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Reduce Social Anxiety at Events
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Discover your community
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+              <div>
+                <h4
+                  className={`text-lg font-bold ${COLORS.text.primary} mb-2 flex items-center gap-2`}
+                >
+                  <div
+                    className={`h-2 w-2 ${COLORS.decoration.bullet} rounded-full`}
+                  ></div>
+                  Make the Most of Events
+                </h4>
+                <p className={`${COLORS.text.secondary} ml-4 leading-relaxed`}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Smaller cards */}
+
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {[
+            {
+              title: "Inclusivity",
+              icon: Users,
+              desc: "Lorem ipsum dolor sit amet",
+            },
+            {
+              title: "Authenticity",
+              icon: Heart,
+              desc: "Lorem ipsum dolor sit amet",
+            },
+            {
+              title: "Privacy & Safety",
+              icon: Shield,
+              desc: "Lorem ipsum dolor sit amet",
+            },
+            {
+              title: "Community",
+              icon: Sparkles,
+              desc: "Lorem ipsum dolor sit amet",
+            },
+          ].map((value, index) => (
+            <Card
+              key={index}
+              className={`${COLORS.border.default} text-center ${COLORS.interactive.cardHover} transition-shadow`}
+            >
+              <CardContent className="pt-6">
+                <div
+                  className={`h-14 w-14 ${COLORS.decoration.iconBg} mx-auto mb-3 flex items-center justify-center rounded-full`}
+                >
+                  <value.icon className={`h-7 w-7 ${COLORS.icon.nav}`} />
+                </div>
+                <h4 className={`font-bold ${COLORS.text.primary} mb-1`}>
+                  {value.title}
+                </h4>
+                <p className={`text-sm ${COLORS.text.secondary}`}>
+                  {value.desc}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
       <section
         id="login"
@@ -425,7 +614,7 @@ export default function AboutPage() {
               size="lg"
               className={`w-full ${COLORS.button.primary} ${COLORS.button.primaryHover} ${COLORS.text.white} py-6 text-lg`}
             >
-              Create Account
+              Sign In
             </Button>
 
             <div className="relative">
@@ -448,7 +637,7 @@ export default function AboutPage() {
               variant="outline"
               className={`w-full ${COLORS.button.outline} py-6 text-lg`}
             >
-              Sign In
+              Create Account
             </Button>
 
             {/* Placeholder, there is no link rn */}
