@@ -14,6 +14,7 @@ import {
   Users,
   Workflow,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -665,13 +666,15 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <Button
-              size="lg"
-              variant="outline"
-              className={`w-full ${COLORS.button.outline} py-6 text-lg`}
-            >
-              Create Account
-            </Button>
+            <Link href={"/register"}>
+              <Button
+                size="lg"
+                variant="outline"
+                className={`w-full ${COLORS.button.outline} py-6 text-lg`}
+              >
+                Create Account
+              </Button>
+            </Link>
 
             {/* Placeholder, there is no link rn */}
             <p className={`text-center text-sm ${COLORS.text.tertiary}`}>
