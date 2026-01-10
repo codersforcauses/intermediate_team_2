@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import {
   createContext,
   ReactNode,
@@ -22,7 +21,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [refreshToken, setRefreshToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const router = useRouter();
 
   useEffect(() => {
     const storedAccess = localStorage.getItem("accessToken");
@@ -44,7 +42,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setRefreshToken(null);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    router.push("/login");
   };
 
   const isLoggedIn = !!accessToken;
