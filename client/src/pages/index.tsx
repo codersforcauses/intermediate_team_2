@@ -237,7 +237,7 @@ export default function AboutPage() {
       {/* about section */}
       <section
         id="about"
-        className="container mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-20"
+        className={`container mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center px-4 py-20 ${COLORS.background.card}`}
       >
         <div className="grid items-center gap-8 md:grid-cols-2">
           <div>
@@ -384,7 +384,7 @@ export default function AboutPage() {
       {/* why this app section */}
       <section
         id="why"
-        className="container mx-auto min-h-screen max-w-6xl px-4 py-12 md:py-20"
+        className={`${COLORS.background.card} container mx-auto min-h-screen max-w-6xl px-4 py-12 md:py-20`}
       >
         <div className="mb-12 text-center">
           <h2
@@ -686,7 +686,7 @@ export default function AboutPage() {
       </section>
       <section
         id="contact"
-        className="container mx-auto min-h-screen max-w-6xl px-4 py-12 md:py-20"
+        className={`${COLORS.background.card} container mx-auto max-w-6xl px-4 py-12 md:py-20`}
       >
         <div className="mb-12 text-center">
           <h2
