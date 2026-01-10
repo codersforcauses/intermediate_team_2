@@ -664,6 +664,48 @@ export default function AboutPage() {
             }
           </p>
         </div>
+        <div className="mb-12 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              title: "gen",
+              email: "generalenquiries@gmail.com",
+              desc: "General Inquiries",
+              icon: Mail,
+            },
+            {
+              title: "stu",
+              email: "studentenquiries@gmail.com",
+              desc: "Student Inquiries",
+              icon: Users,
+            },
+            {
+              title: "org",
+              email: "organiserenquiries@gmail.com",
+              desc: "Event Organiser Inquiries",
+              icon: Star,
+            },
+          ].map((value, index) => (
+            <Card
+              key={index}
+              className={`${COLORS.border.default} text-center ${COLORS.interactive.cardHover} transition-shadow`}
+            >
+              <CardContent className="pt-6">
+                <value.icon
+                  className={`h-12 w-12 ${COLORS.icon.nav} mx-auto mb-4`}
+                />
+                <h4 className={`font-bold ${COLORS.text.primary} mb-2`}>
+                  {value.desc}
+                </h4>
+                <a
+                  href="mailto:hello@uniconnect.app"
+                  className={`${COLORS.text.secondary} ${COLORS.interactive.linkHover}`}
+                >
+                  {value.email}
+                </a>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </section>
     </div>
   );
