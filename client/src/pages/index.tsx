@@ -14,12 +14,16 @@ import {
   Users,
   Workflow,
 } from "lucide-react";
-import React from "react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+import { toast } from "sonner";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useAuth } from "@/context/AuthContext";
+import api from "@/lib/api";
 
 // Added this so that we can change colors more easily
 const COLORS = {
@@ -98,6 +102,30 @@ const scrollTo = (id: string) => {
 };
 
 export default function AboutPage() {
+  const router = useRouter();
+  const { login, logout } = useAuth();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  //function to return JWT
+  const handleLogin = async () => {
+    try {
+      logout();
+      const res = await api.post("/user/login/", {
+        username,
+        password,
+      });
+      const { access, refresh } = res.data;
+      login(access, refresh);
+
+      toast("Logged in successfully");
+      router.push("/home");
+    } catch (err) {
+      console.log(err);
+      toast("Login failed. Please check your credentials.");
+    }
+  };
+
   return (
     <div className={`min-h-screen scroll-smooth ${COLORS.background.main}`}>
       {/* nav */}
@@ -588,12 +616,14 @@ export default function AboutPage() {
                 <label
                   className={`text-sm font-medium ${COLORS.text.primary} mb-2 block`}
                 >
-                  Email
+                  Username
                 </label>
                 <Input
-                  type="email"
-                  placeholder="your.email@university.edu"
-                  className={COLORS.border.input}
+                  id="username"
+                  type="username"
+                  placeholder="Enter Username here"
+                  required
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div>
@@ -603,9 +633,11 @@ export default function AboutPage() {
                   Password
                 </label>
                 <Input
-                  type="password"
-                  placeholder="Create a secure password"
+                  id="password"
+                  placeholder="Enter Password here"
                   className={COLORS.border.input}
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
             </div>
@@ -613,6 +645,7 @@ export default function AboutPage() {
             <Button
               size="lg"
               className={`w-full ${COLORS.button.primary} ${COLORS.button.primaryHover} ${COLORS.text.white} py-6 text-lg`}
+              onClick={handleLogin}
             >
               Sign In
             </Button>
