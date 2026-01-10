@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Confetti from "react-confetti";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ export default function ParticipantsPage() {
 
   return (
     <>
+      <Confetti numberOfPieces={1000} recycle={false} />
       <ActionLayout
         secondaryAction={
           <Button
@@ -47,7 +49,7 @@ export default function ParticipantsPage() {
           {!isLoading &&
             event?.participants &&
             event.participants.length > 0 && (
-              <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
                 {event.participants.map((p) => (
                   <Card key={p.id}>
                     <CardContent className="flex items-center gap-4 p-4">
