@@ -670,7 +670,7 @@ export default function AboutPage() {
               <Button
                 size="lg"
                 variant="outline"
-                className={`w-full ${COLORS.button.outline} py-6 text-lg`}
+                className={`w-full ${COLORS.button.outline} mt-5 py-6 text-lg`}
               >
                 Create Account
               </Button>

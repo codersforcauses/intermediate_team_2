@@ -13,6 +13,7 @@ export interface Tag {
 }
 
 export interface EventImage {
+  url: string;
   id: number;
   image: string;
 }
