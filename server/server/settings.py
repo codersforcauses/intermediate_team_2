@@ -38,6 +38,8 @@ ALLOWED_HOSTS: list[str] = os.environ.get("API_ALLOWED_HOSTS").split() if os.env
 # Application definition
 
 INSTALLED_APPS = [
+    # "chats.apps.serverConfig"
+    "daphne",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,6 +50,13 @@ INSTALLED_APPS = [
     "rest_framework",
     "corsheaders",
     "healthcheck",
+    # "user_profile",
+    "channels", 
+    "chat",
+    "user",
+    "event",
+    "tag",
+    "advertising",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +79,12 @@ if FRONTEND_URL:
 
 ROOT_URLCONF = "server.urls"
 
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -87,6 +102,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "server.wsgi.application"
+ASGI_APPLICATION = "server.asgi.application"
 
 
 # Database
@@ -148,9 +164,11 @@ USE_TZ = True
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))  # <- '/' directory
 
 STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
 
 # STATIC_ROOT is where the static files get copied to when "collectstatic" is run.
 STATIC_ROOT = "static_files"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # This is where to _find_ static files when 'collectstatic' is run.
 # These files are then copied to the STATIC_ROOT location.
@@ -160,3 +178,9 @@ STATICFILES_DIRS = ("static",)
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels.layers.InMemoryChannelLayer",
+#     }
+# }
